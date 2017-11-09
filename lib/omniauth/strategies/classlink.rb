@@ -11,7 +11,7 @@ module OmniAuth
         token_url:     '/oauth2/v2/token'
       }
       option :fields, [:email, :profile]
-      option :uid_field, :email
+      option :uid_field, 'UserId'
 
       def authorize_params
         super.tap do |params|
