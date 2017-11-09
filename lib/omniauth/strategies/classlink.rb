@@ -6,9 +6,9 @@ module OmniAuth
     class ClassLink < OmniAuth::Strategies::OAuth2
       option :name, :classlink
       option :client_options, {
-        :site          => 'https://launchpad.classlink.com',
-        :authorize_url => '/oauth2/v2/auth',
-        :token_url     => '/oauth2/v2/token'
+        site:          'https://launchpad.classlink.com',
+        authorize_url: '/oauth2/v2/auth',
+        token_url:     '/oauth2/v2/token'
       }
       option :fields, [:email, :profile]
       option :uid_field, :email
