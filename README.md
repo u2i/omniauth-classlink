@@ -1,7 +1,7 @@
 [![Gem Version](https://badge.fury.io/rb/omniauth-classlink.svg)](https://badge.fury.io/rb/omniauth-classlink)
 
 # OmniAuth ClassLink
-Unofficial OmniAuth strategy for [ClassLink](classlink.com) integration.
+Unofficial OmniAuth strategy for [ClassLink](https://classlink.com) integration.
 
 # Installation
 
