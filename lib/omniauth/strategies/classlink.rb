@@ -37,6 +37,13 @@ module OmniAuth
       def raw_info
         @raw_info ||= access_token.get('https://nodeapi.classlink.com/v2/my/info').parsed
       end
+
+
+      private
+
+      def callback_url
+        request.params['redirect_uri'] || options[:redirect_uri] || super
+      end
     end
   end
 end
