@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'omniauth/classlink/version'
+require 'omniauth/class_link/version'
 
 Gem::Specification.new do |gem|
   gem.name          = "omniauth-classlink"
@@ -21,5 +21,5 @@ Gem::Specification.new do |gem|
   gem.test_files    = gem.files.grep(%r{^(test|spec|features)/})
   gem.require_paths = ["lib"]
 
-  gem.add_runtime_dependency 'omniauth-oauth2', '~> 1.1.1'
+  gem.add_runtime_dependency 'omniauth-oauth2', '~> 1.4'
 end

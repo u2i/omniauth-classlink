@@ -18,18 +18,18 @@ $ bundle
 
 # Usage
 
-First, you need to have your OAuth2 application registered in ClassLink. After creating one, you'll be provided with access key and secret that should be used for configuring the gem. 
+First, you need to have your OAuth2 application registered in ClassLink. After creating one, you'll be provided with access key and secret that should be used for configuring the gem.
 
 ```ruby
 Rails.application.config.middleware.use OmniAuth::Builder do
-  provider :classlink, 'your-classlink-access-key', 'your-classlink-secret', strategy_class: 'OmniAuth::Strategies::ClassLink'
+  provider :class_link, 'your-classlink-access-key', 'your-classlink-secret', strategy_class: 'OmniAuth::Strategies::ClassLink'
 end
 ```
 
 Or, alternatively, if you use [Devise](https://github.com/plataformatec/devise), you can put this in the `Devise.setup` section:
 
 ```ruby
- config.omniauth :classlink, 
+ config.omniauth :class_link,
                  'your-classlink-access-key',
                  'your-classlink-secret',
                  strategy_class: 'OmniAuth::Strategies::ClassLink'
