@@ -1,2 +1,2 @@
-require 'omniauth/classlink/version'
-require 'omniauth/strategies/classlink'
+require 'omniauth/class_link/version'
+require 'omniauth/strategies/class_link'

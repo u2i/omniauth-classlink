@@ -13,6 +13,10 @@ module OmniAuth
       option :fields, [:email, :profile]
       option :uid_field, 'UserId'
 
+      uid do
+        raw_info[options.uid_field.to_s]
+      end
+
       def authorize_params
         super.tap do |params|
           params[:scope] = [:email, :profile]
@@ -23,6 +27,7 @@ module OmniAuth
       info do
         {
           first_name: raw_info['FirstName'],
+          last_name: raw_info['LastName'],
           district_id: raw_info['TenantId'],
           classlink_id: raw_info['UserId'],
           external_id: raw_info['SourcedId'],

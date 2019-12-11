@@ -1,1 +1,1 @@
-require 'omniauth/classlink'
+require 'omniauth/class_link'
