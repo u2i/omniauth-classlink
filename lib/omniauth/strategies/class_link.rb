@@ -31,7 +31,8 @@ module OmniAuth
           district_id: raw_info['TenantId'],
           classlink_id: raw_info['UserId'],
           external_id: raw_info['SourcedId'],
-          role: raw_info['Role']
+          role: raw_info['Role'],
+          email: raw_info['Email']
         }
       end
 
