@@ -32,7 +32,8 @@ module OmniAuth
           classlink_id: raw_info['UserId'],
           external_id: raw_info['SourcedId'],
           role: raw_info['Role'],
-          email: raw_info['Email']
+          email: raw_info['Email'],
+          image: raw_info['ImagePath']
         }
       end
 
