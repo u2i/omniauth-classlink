@@ -19,7 +19,7 @@ module OmniAuth
 
       def authorize_params
         super.tap do |params|
-          params[:scope] = [:email, :profile]
+          params[:scope] = (params[:scope] || []).union([:email, :profile])
           params[:response_type] = :code
         end
       end
