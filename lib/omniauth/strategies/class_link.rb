@@ -6,9 +6,9 @@ module OmniAuth
     class ClassLink < OmniAuth::Strategies::OAuth2
       option :name, :classlink
       option :client_options, {
-        site:          'https://launchpad.classlink.com',
-        authorize_url: '/oauth2/v2/auth',
-        token_url:     '/oauth2/v2/token'
+        site:          'https://auth.apis.classlink.com',
+        authorize_url: '/oauth2/v3/auth',
+        token_url:     '/oauth2/v3/token'
       }
       option :fields, [:email, :profile]
       option :uid_field, 'UserId'
@@ -21,6 +21,7 @@ module OmniAuth
         super.tap do |params|
           params[:scope] = [:email, :profile]
           params[:response_type] = :code
+          params[:grant_type] = :authorization_code
         end
       end
 
@@ -41,8 +42,18 @@ module OmniAuth
         { 'raw_info' => raw_info }
       end
 
+      def default_headers
+        {
+          'Accept': 'application/json',
+          'Authorization': "Bearer #{access_token}"
+        }
+      end
+
       def raw_info
-        @raw_info ||= access_token.get('https://nodeapi.classlink.com/v2/my/info').parsed
+        @raw_info ||= access_token.get(
+          'https://auth.apis.classlink.com/myinfo',
+          headers: default_headers
+        ).parsed
       end
 
       private
