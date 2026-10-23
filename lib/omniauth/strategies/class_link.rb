@@ -6,9 +6,10 @@ module OmniAuth
     class ClassLink < OmniAuth::Strategies::OAuth2
       option :name, :classlink
       option :client_options, {
-        site:          'https://launchpad.classlink.com',
-        authorize_url: '/oauth2/v2/auth',
-        token_url:     '/oauth2/v2/token'
+        site:          'https://auth.apis.classlink.com',
+        authorize_url: '/oauth2/v3/auth',
+        token_url:     '/oauth2/v3/token',
+        auth_scheme:   :request_body
       }
       option :fields, [:email, :profile]
       option :uid_field, 'UserId'
@@ -19,8 +20,14 @@ module OmniAuth
 
       def authorize_params
         super.tap do |params|
-          params[:scope] = [:email, :profile]
+          params[:scope] = [:email, :profile].join(" ")
           params[:response_type] = :code
+        end
+      end
+
+      def token_params
+        super.tap do |params|
+          params[:grant_type] = :authorization_code
         end
       end
 
@@ -42,14 +49,15 @@ module OmniAuth
       end
 
       def raw_info
-        @raw_info ||= access_token.get('https://nodeapi.classlink.com/v2/my/info').parsed
+        @raw_info ||= access_token.get('https://auth.apis.classlink.com/myinfo').parsed
       end
 
       private
 
       def callback_url
         # You can overwrite it for development purposes
-        options[:redirect_uri] || super
+        # Must omit query string
+        options[:redirect_uri] || full_host + callback_path
       end
     end
   end
